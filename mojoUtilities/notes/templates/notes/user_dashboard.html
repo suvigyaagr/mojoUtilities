@@ -5,9 +5,19 @@
 {% endblock title %}
 
 
-{% block user %}{{ user_name }}{% endblock user %}
-
-
 {% block body %}	
-	Welcome user.
+	<h2> Welcome user. </h2>
+	<br>
+
+	<a href="{% url 'notes:add_new_note' user_name %}"> Add a note </a>
+
+	<br><br>
+	<h3>List of notes </h3>
+	<br>
+	{% for note in user_notes %}
+	<ul>
+		<li>Title: {{ note.note_title }}</li>
+			Text: {{ note.note_text }}
+	</ul>
+	{% endfor %}
 {% endblock body %}

@@ -28,10 +28,10 @@
               <a class="nav-link" href="#">About</a>
             </li> -->
             <li class="nav-item">
-              <a class="nav-link" href="#">User : {% block user %}{% endblock user %}</a>
+              <a class="nav-link" href="#">User : {{ user_name }}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Logout</a>
+              <a class="nav-link" href="{% url 'notes:index' %}">Logout</a>
             </li>
           </ul>
         </div>

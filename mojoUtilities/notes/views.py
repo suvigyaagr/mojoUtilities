@@ -23,7 +23,29 @@ def userLogin(request):
 
 
 def userDashboard(request, user_name):
+    user_object = User.objects.get(user_name = user_name)
+    user_notes = NotesEntry.objects.filter(user_name = user_object)
+    context = {
+        'user_name': user_name,
+        'user_notes': user_notes,
+    }
+    return render(request, 'notes/user_dashboard.html', context)
+
+
+def addNewNote(request, user_name):
     context = {
         'user_name': user_name,
     }
-    return render(request, 'notes/user_dashboard.html', context)
+    return render(request, 'notes/add_new_note.html', context)
+
+
+def addNote(request, user_name):
+    user_object = User.objects.get(user_name = user_name)
+    note_title = request.POST.get("note_title")
+    note_text = request.POST.get("note_text")
+    note = NotesEntry(user_name=user_object, note_title= note_title, note_text = note_text)
+    note.save()
+    context = {
+        'user_name': user_name,
+    }
+    return HttpResponseRedirect('/notes/@%s/dashboard' %(user_name))

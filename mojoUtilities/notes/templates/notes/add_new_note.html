@@ -1,0 +1,21 @@
+{% extends 'notes/base.html' %}
+
+{% block title %}
+	Add new note
+{% endblock title %}
+
+
+{% block body %}
+	<h3>Add a new note</h3>
+
+	<br>
+
+	<form action="{% url 'notes:add_note' user_name %}" method="post">
+		{% csrf_token %}
+		Note Title : <input type="text" name="note_title" required>
+		<br>
+		Note Text : <input type="text" name="note_text" required>
+		<br>
+		<input type="submit" value="Submit">
+	</form>
+{% endblock %}
