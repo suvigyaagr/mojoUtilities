@@ -25,19 +25,21 @@ SECRET_KEY = '@uske+5h66_qhq76f6o22wn37=nacm(519nuy*&uo-#8m^a^3f'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['suvigya.pythonanywhere.com','localhost']
+ALLOWED_HOSTS = ['suvigya.pythonanywhere.com','localhost','127.0.0.1','shreyaskm.pythonanywhere.com']
 
 
 # Application definition
 
 INSTALLED_APPS = [
     'notes',
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
 ]
 
 MIDDLEWARE = [
@@ -80,6 +82,10 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+# HOOK_EVENTS={
+#     'user.added':'notes.User.created',#triggers an event when a user is created
+#     'entry.added':'notes.NotesEntry.created',#triggers an event when a notes is added to django
+# }
 
 
 # Password validation
