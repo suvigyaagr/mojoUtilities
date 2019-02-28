@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>mojoUtilities</title>
+</head>
+<body>
+	<h2>Welcome to mojoUtilities</h2>
+
+	<hr>
+	{% if session_data %}
+		<ul>
+		{% for i in session_data %}
+			<li>{{ i }}
+		{% endfor %}
+		</ul>
+	{% endif %}
+	<hr>
+
+	<br>
+	<h3>
+		<a href="{% url 'notes:login' %}">Login</a>
+		<br>
+		<a href="{% url 'notes:signup' %}">Signup</a>
+	</h3>
+</body>
+</html>
