@@ -6,6 +6,16 @@
 <body>
 	<h2>Welcome to Notes Entry</h2>
 
+	<hr>
+	{% if session_data %}
+		<ul>
+		{% for i in session_data %}
+			<li>{{ i }}
+		{% endfor %}
+		</ul>
+	{% endif %}
+	<hr>
+
 	<br>
 
 	<form action="{% url 'notes:login' %}" method="post">

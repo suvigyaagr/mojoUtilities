@@ -9,6 +9,16 @@
 	<h2> Welcome user. </h2>
 	<br>
 
+	<hr>
+	{% if session_data %}
+		<ul>
+		{% for i in session_data %}
+			<li>{{ i }}
+		{% endfor %}
+		</ul>
+	{% endif %}
+	<hr>
+
 	<a href="{% url 'notes:add_new_note' user_name %}"> Add a note </a>
 
 	<br><br>
