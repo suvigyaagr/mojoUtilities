@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.urls import reverse
-# import json
+import json
 # from django.views.generic import View
 # from django.http import HttpResponse
 # from jwt_auth.mixins import JSONWebTokenAuthMixin
@@ -10,6 +10,7 @@ from django.views.decorators.http import require_http_methods
 
 
 from django.views.decorators.csrf import csrf_exempt
+from . import views
 
 
 from .models import User, NotesEntry
@@ -70,18 +71,31 @@ def addNote(request, user_name):
 
 @csrf_exempt
 def hook_receiver_view(request):
-    print(request.method)
-    if request.method == 'POST':
-        # print(request.POST.get("data1"))
-        # print(request.POST.get("note_title"))
-        # print(request.POST.get("user_name"))
-        user_name=request.POST.get("user_name")
-        user_object =User.objects.get(user_name=user_name)
-        note_title=request.POST.get("note_title")
-        note_text= request.POST.get("data1")
-        note=NotesEntry(user_name=user_object,note_title=note_title,note_text=note_text)
-        note.save()
-        return JsonResponse({'foo': 'bar'})
 
+    if request.method == 'POST':
+        # user_name = request.POST.get("user_name")
+        # user_object = User.objects.get(user_name=user_name)
+        # note_title = request.POST.get("note_title")
+        # note_text = request.POST.get("data1")
+        # received_json_data = json.loads(request.body)
+        #  type(received_json_data)
+        # note_text = json.loads(request.POST[data1])
+        # note_title = json.loads(request.POST[note_title])
+        # user_name = json.loads(request.POST[user_name])
+        # user_name = received_json_data .get("user_name")
+        # user_object = User.objects.get(user_name=user_name)
+        # note_title = received_json_data .get("note_title")
+        # note_text = received_json_data .get("data1")
+
+
+        received_json_data = json.loads(request.body.decode("utf-8"))
+        print(received_json_data)
+        user_name = received_json_data["user_name"]
+        user_object = User.objects.get(user_name=user_name)
+        note_title = received_json_data["note_title"]
+        note_text = received_json_data["data1"]
+        note = NotesEntry(user_name=user_object, note_title=note_title, note_text=note_text)
+        note.save()
+        return JsonResponse({'display': 'Its a POST method'})
     else:
-        return JsonResponse({'abc': 'cdf'})
+        return JsonResponse({'display': 'Its not a POST method'})
