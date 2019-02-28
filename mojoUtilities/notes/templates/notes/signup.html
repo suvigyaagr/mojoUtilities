@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Login</title>
+	<title>Signup</title>
 </head>
 <body>
 	<h2>Welcome to Notes Entry</h2>
@@ -18,7 +18,7 @@
 
 	<br>
 
-	<form action="{% url 'notes:new_login' %}" method="post">
+	<form action="{% url 'notes:new_signup' %}" method="post">
 		{% csrf_token %}
 		Username : <input type="text" name="user_name" required>
 		<br>

@@ -10,7 +10,7 @@
 
 	<br>
 
-	<form action="{% url 'notes:add_note' user_name %}" method="post">
+	<form action="{% url 'notes:add_new_note' user_name %}" method="post">
 		{% csrf_token %}
 		Note Title : <input type="text" name="note_title" required>
 		<br>
