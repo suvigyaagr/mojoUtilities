@@ -28,7 +28,7 @@
               <a class="nav-link" href="#">About</a>
             </li> -->
             <li class="nav-item">
-              <a class="nav-link" href="#">User : {{ user_name }}</a>
+              <a class="nav-link" href="{% url 'notes:user_profile' user_name %}">User : {{ user_name }}</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'notes:logout' user_name %}">Logout</a>
