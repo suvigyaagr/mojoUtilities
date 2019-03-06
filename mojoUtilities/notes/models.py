@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime
 
 # Create your models here.
 class User(models.Model):
@@ -23,6 +24,10 @@ class User(models.Model):
 		blank = True,
 		default = 'm',
 		help_text='User gender',
+	)
+	dob = models.DateField(
+		blank = True,
+		default = datetime.now
 	)
 
 	def __str__(self):
