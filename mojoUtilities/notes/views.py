@@ -106,6 +106,27 @@ def userDashboard(request, user_name):
         return HttpResponse("Cannot access session_user_name")
 
 
+def userProfile(request, user_name):
+    try:
+        session_user_name = request.session['user_name']
+        if (user_name == session_user_name):
+            pass
+        else:
+            user_name = session_user_name
+            return HttpResponse("session_user_name does not match with user_name")
+        user_object = User.objects.get(user_name = user_name)
+        session_data = [(key, value) for key, value in request.session.items()]
+        context = {
+            'user_name': user_name,
+            'user_object': user_object,
+            'session_data': session_data,
+            # 'error_msg': error_msg,
+        }
+        return render(request, 'notes/user_profile.html', context)
+    except:
+        return HttpResponse("Cannot access session_user_name")
+
+
 def addNote(request, user_name):
     try:
         session_user_name = request.session['user_name']

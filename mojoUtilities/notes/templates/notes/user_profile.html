@@ -1,0 +1,33 @@
+{% extends 'notes/base.html' %}
+
+{% block title %}
+	Welcome
+{% endblock title %}
+
+
+{% block body %}	
+	<h2> Welcome user. </h2>
+	<br>
+
+	<hr>
+	{% if session_data %}
+		<ul>
+		{% for i in session_data %}
+			<li>{{ i }}
+		{% endfor %}
+		</ul>
+	{% endif %}
+	<hr>
+
+	<br><br>
+	<h3>Details of the user </h3>
+	<br>
+	{% if user_object %}
+	<ul>
+		<li>Full Name: {{ user_object.fullName }}</li>
+		<li>Username: {{ user_object.user_name }}</li>
+		<li>Gender: {{ user_object.user_gender }}</li>
+		<li>DOB : {{ user_object.dob }}</li>
+	</ul>
+	{% endif %}
+{% endblock body %}
